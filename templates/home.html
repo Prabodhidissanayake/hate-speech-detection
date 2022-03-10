@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>Hate Prediction Using ML</title>
+  <style>
+    body {
+      background-color: #eee;
+    }
+
+    #sign_in_loader {
+      height: 14px !important;
+      width: 14px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5 bg-white p-5" style="border-radius: 10px;">
+    <h1 class="text-center font-weight-bold text-uppercase " style='color:#000880'>Hate speech Detection</h1>
+    <br>
+    <br>
+    <form action="/submit" method="POST">
+      <div class="input-group w-50 ml-auto" style="margin-left: auto;margin-right: auto;">
+        <input type="text" name='tweet' placeholder="Enter your input here" class="form-control text-center"
+          style="width: 100px;" required>
+      </div>
+      <div class="text-center">
+        <div class="form-check form-check-inline">
+          <br>
+          <input class="form-check-input" type="radio" name="isText" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Text
+          </label>
+        </div>
+        <div class="form-check form-check-inline ">
+          <input class="form-check-input" type="radio" name="isUsername" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Tweeter username
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-info mt-3 text-white  text-uppercase" id='submit_btn' style="font-weight:bold;
+        width:230px;" > Predict </button>
+        <br>
+        <br>
+      </div>
+  </div>
+  </form>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" 
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Hate speech Detection</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span class="text-uppercase font-weight-bold" style="font-weight: bold;">result</span>:{{result}}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $('#submit_btn').click(function () {
+      document.getElementById('submit_btn').innerHTML = `Processing..<span class="spinner-border" role="status" 
+        id='sign_in_loader'>
+      </span>`
+    });
+
+     
+
+
+    
+  </script>
+</body>
+
+</html>
