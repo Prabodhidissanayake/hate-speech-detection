@@ -18,7 +18,7 @@
         <table class="table">
             <thead>
               <tr><th scope="col"></th>
-                <th scope="col">Text</th>
+                <th scope="col">Tweets fetched</th>
                 <th scope="col">Date</th>
                 <th scope="col">Result</th>
               </tr>
@@ -27,7 +27,7 @@
         {%for tweet in resultList%}
                 <tr>
                     <th scope="row"></th>
-                        <td>{{tweet.text}}....</td>
+                        <td>{{tweet.text}}</td>
                     <td>{{tweet.created_at}}</td>
                     <td {% if tweet.result == 'Hate' %} class="text-danger" {%else%} class="text-success font-weight-bold" {%endif%} style="font-weight: bolder;">{{tweet.result}}</td>
                   </tr>

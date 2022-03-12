@@ -1,0 +1,7 @@
+Flask==2.0.3 
+tweepy==4.6.0
+pandas==1.4.1
+scikit-learn==1.0.2
+requests==2.27.1
+pickleshare==0.7.5
+numpy==1.22.2

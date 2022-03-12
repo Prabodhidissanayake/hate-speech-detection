@@ -1,3 +1,28 @@
+#from flask import Flask, render_template, request
+#import pickle
+#import numpy as np
+
+#model = pickle.load(open('hateSpeechModel.pickle', 'rb'))
+
+#app = Flask(__name__)
+
+
+#@app.route('/')
+#def man():
+   # return render_template('home.html')
+
+#@app.route('/predict', methods=['POST'])
+#def home():
+ #text1 = request.form['tweet']
+
+ #pred = model.predict(text1)
+ #return render_template('after.html', data=pred)
+
+
+#if __name__ =="__main__":
+ #   app.run(debug=True)
+
+
 from flask import Flask, render_template,request, jsonify
 import numpy as np
 import pickle
@@ -14,6 +39,7 @@ app = Flask(__name__)
 # import required libraries
 import tweepy
 import time
+import datetime
 import pandas as pd
 api_key ="p9btWOq38TXczri4AfCSqJjkx"
 # api secret key
@@ -43,15 +69,15 @@ def submit():
     if request.method == "POST":  
         text1 = request.form['tweet']
         Resultlist = []
-        try:
-            newlist = []
-            inputtext = ''
-            request.form['isUsername']
+        newlist = []
+        inputtext = ''
+        inputtype = request.form['IsText']
+        
+        if inputtype == 'Username':
             username = text1
             authentication = tweepy.OAuthHandler(api_key, api_secret_key)
             authentication.set_access_token(access_token, access_token_secret)
             api = tweepy.API(authentication, wait_on_rate_limit=True)
-            
             for tweet in tweepy.Cursor(api.user_timeline, screen_name = username).items(10):
                 text = tweet.text
                 tempArr = CleanText(text)
@@ -65,13 +91,16 @@ def submit():
                 result_dict = { 
                     'text':text[:30],
                     'result':result,
-                    'created_at': tweet.created_at
+                    'created_at': tweet.created_at.replace(tzinfo=None)
                 }
                 Resultlist.append(result_dict)
-        except:
-            pass
-        try:
-            request.form['isText']
+
+            try:
+                print(result)
+            except:
+                result = 'Username Not Found'
+                inputtext = text1
+        else:
             text = text1
             tempArr = CleanText(text)
             corpus = [str(tempArr)]
@@ -82,10 +111,7 @@ def submit():
                 result = 'No Hate'
             else:
                 result = 'Hate'
-                
-        except:
-            pass
-
+    
         return render_template("submit.html", resultList = Resultlist,result=result,inputtext=inputtext)
 
 
