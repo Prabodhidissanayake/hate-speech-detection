@@ -78,8 +78,8 @@ def submit():
             authentication = tweepy.OAuthHandler(api_key, api_secret_key)
             authentication.set_access_token(access_token, access_token_secret)
             api = tweepy.API(authentication, wait_on_rate_limit=True)
-            for tweet in tweepy.Cursor(api.user_timeline, screen_name = username).items(10):
-                text = tweet.text
+            for status in tweepy.Cursor(api.user_timeline,  tweet_mode='extended',screen_name = username).items(10):
+                text = status.retweeted_status.full_text
                 tempArr = CleanText(text)
                 corpus = [str(tempArr)]
                 vectors = vec_loaded.transform(corpus)
@@ -88,10 +88,11 @@ def submit():
                     result = 'No Hate'
                 else:
                     result = 'Hate'
+                    
                 result_dict = { 
-                    'text':text[:30],
+                    'text':text,
                     'result':result,
-                    'created_at': tweet.created_at.replace(tzinfo=None)
+                    'created_at': status.created_at.replace(tzinfo=None)
                 }
                 Resultlist.append(result_dict)
 
