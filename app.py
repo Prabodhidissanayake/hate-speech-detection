@@ -79,7 +79,9 @@ def submit():
             authentication.set_access_token(access_token, access_token_secret)
             api = tweepy.API(authentication, wait_on_rate_limit=True)
             for status in tweepy.Cursor(api.user_timeline,  tweet_mode='extended',screen_name = username).items(10):
-                text = status.retweeted_status.full_text
+                text = status.full_text
+                if hasattr(status, "retweeted_status"):
+                    text = status.retweeted_status.full_text                    
                 tempArr = CleanText(text)
                 corpus = [str(tempArr)]
                 vectors = vec_loaded.transform(corpus)
