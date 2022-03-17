@@ -41,35 +41,43 @@
     .default-margin{      
       margin: 15px;
     }
+
+    .default-annimation:hover{
+      transform: scale(1.15);
+    }
+
+    .form-check-inline{
+      margin: 5px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container mt-5 bg-white p-5" style="border-radius: 10px;">
+  <div class="container mt-5 bg-white p-5 " style="border-radius: 10px;">
     <h1 class="center-frame title default-margin">Hate speech Detection</h1>
     <!-- <br> -->
     <!-- <br> -->
     <form action="/results" method="POST">
       <div class="input-group w-50 ml-auto input-textbox">
-        <input type="text" name='tweet' placeholder="Enter your input here" class="form-control text-center" required>
+        <input type="text" name='tweet' placeholder="Enter your input here" class="form-control text-center default-annimation" required>
       </div>
       <div class="center-frame default-margin">
         <!-- <div style="margin-top: 10px;"> -->
-        <div class="form-check form-check-inline">
+        <div class="form-check form-check-inline default-annimation">
           <input class="form-check-input" type="radio" value="Text" name="IsText" id="flexRadioDefault1" checked>
           <label class="form-check-label" for="flexRadioDefault1">
             Text
           </label>
         </div>
-        <div class="form-check form-check-inline ">
+        <div class="form-check form-check-inline default-annimation">
           <input class="form-check-input" type="radio" value="Username" name="IsText" id="flexRadioDefault2">
           <label class="form-check-label" for="flexRadioDefault2">
             Twitter Username
           </label>
         </div>
       </div>
-      <div class="center-frame default-margin">
-        <button type="submit" class="btn btn-info mt-3 text-white text-uppercase" id='submit_btn' style="font-weight:bold;
+      <div class="center-frame">
+        <button type="submit" class="btn btn-info mt-3 text-white text-uppercase default-annimation" id='submit_btn' style="font-weight:bold;
         width:230px;"> Predict </button>
       </div>
       <!-- <br> -->
