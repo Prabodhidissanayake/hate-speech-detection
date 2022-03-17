@@ -33,7 +33,7 @@ access_token_secret = "iILNydxaee0hl8WI8ZpOHL5MUqIWg3Or53nZnyZEMfGE2"
 def hello():
     return render_template("home.html")
 
-@app.route("/submit", methods =['POST'])
+@app.route("/results", methods =['POST'])
 
 
 def submit():
@@ -90,7 +90,7 @@ def submit():
             else:
                 result = 'Hate'
     
-        return render_template("submit.html", resultList = Resultlist,result=result,inputtext=inputtext)
+        return render_template("results.html", resultList = Resultlist,result=result,inputtext=inputtext)
 
 
 def CleanText(rawtext):
