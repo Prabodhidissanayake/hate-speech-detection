@@ -1,28 +1,3 @@
-#from flask import Flask, render_template, request
-#import pickle
-#import numpy as np
-
-#model = pickle.load(open('hateSpeechModel.pickle', 'rb'))
-
-#app = Flask(__name__)
-
-
-#@app.route('/')
-#def man():
-   # return render_template('home.html')
-
-#@app.route('/predict', methods=['POST'])
-#def home():
- #text1 = request.form['tweet']
-
- #pred = model.predict(text1)
- #return render_template('after.html', data=pred)
-
-
-#if __name__ =="__main__":
- #   app.run(debug=True)
-
-
 from flask import Flask, render_template,request, jsonify
 import numpy as np
 import pickle
@@ -58,7 +33,7 @@ access_token_secret = "iILNydxaee0hl8WI8ZpOHL5MUqIWg3Or53nZnyZEMfGE2"
 def hello():
     return render_template("home.html")
 
-@app.route("/results", methods =['POST'])
+@app.route("/submit", methods =['POST'])
 
 
 def submit():
@@ -115,7 +90,7 @@ def submit():
             else:
                 result = 'Hate'
     
-        return render_template("results.html", resultList = Resultlist,result=result,inputtext=inputtext)
+        return render_template("submit.html", resultList = Resultlist,result=result,inputtext=inputtext)
 
 
 def CleanText(rawtext):
