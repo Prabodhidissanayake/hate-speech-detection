@@ -1,14 +1,26 @@
+#from crypt import methods
+import email
 from flask import Flask, render_template,request, jsonify
+from gevent import config
 import numpy as np
 import pickle
 import re
 import preprocessor as p
 from sklearn.feature_extraction.text import CountVectorizer
-# import sklearn
-# from sklearn import svm
-# import pandas as pd
-#from model import prob
+import pyrebase
 
+firebaseConfig = {
+  'apiKey': "AIzaSyAvtAddMEXIzvl4VwK9DTbLxVwEEuyF4Uo",
+  'authDomain': "hatespeechdetection-abba8.firebaseapp.com",
+  'projectId': "hatespeechdetection-abba8",
+  'storageBucket': "hatespeechdetection-abba8.appspot.com",
+  'messagingSenderId': "125967486520",
+  'appId': "1:125967486520:web:87e3d104b5b9b6837720cd",
+  'databaseURL': ""
+}
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
 
 app = Flask(__name__)
 # import required libraries
@@ -29,13 +41,51 @@ access_token_secret = "iILNydxaee0hl8WI8ZpOHL5MUqIWg3Or53nZnyZEMfGE2"
 
 
 @app.route("/")
-
+@app.route("/index", methods= ["GET","POST"])
 def hello():
-    return render_template("home.html")
+    if request.method == 'POST':
+        email = request.form['user_email']
+        password = request.form['user_pwd']
+        try:
+            auth.sign_in_with_email_and_password(email,password)
+            user_info = auth.sign_in_with_email_and_password(email,password)
+            account_info = auth.get_account_info(user_info['idToken'])
+           # if account_info['user'][0]['emailVerified'] ==False:
+              #  verify_message = 'Please verify your email'
+              #  return render_template('index.html', umessage= verify_message)
+            return render_template('home.html')
+        except:
+            unsuccessful = 'Please check your credentials'
+            return render_template('index.html', umessage= unsuccessful)
+    return render_template("index.html")
 
-@app.route("/results", methods =['POST'])
+@app.route("/create_account", methods =['GET','POST'])
+def create_account():
+    if request.method == 'POST':
+        pwd0 = request.form['user_pwd0']
+        pwd1 = request.form['user_pwd1']
+        if pwd0 == pwd1:
+            try:
+                email = request.form['user_email']
+                password = request.form['user_pwd1']
+                new_user = auth.create_user_with_email_and_password(email, password)
+                auth.send_email_verification(new_user['idToken'])
+                return render_template("verify_email.html")
+            except:
+                existing_account = 'Passwords you entered are not matched'
+                return render_template("create_account.html", exist_message = existing_account)
 
+    return render_template("create_account.html")
 
+@app.route("/reset_password", methods =['GET','POST'])
+def forget_password():
+    if request.method == 'POST':
+        email = request.form['user_email']
+        auth.send_password_reset_email(email)
+        return render_template('index.html')
+    return render_template('reset_password.html')
+
+@app.route("/submit", methods =['POST'])
 def submit():
     filename_model = 'final_predict_model.sav'
     filename_vectorizer = 'vectorize_model.sav'
@@ -90,7 +140,7 @@ def submit():
             else:
                 result = 'Hate'
     
-        return render_template("results.html", resultList = Resultlist,result=result,inputtext=inputtext)
+        return render_template("submit.html", resultList = Resultlist,result=result,inputtext=inputtext)
 
 
 def CleanText(rawtext):
