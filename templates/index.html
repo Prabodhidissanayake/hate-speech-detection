@@ -14,33 +14,51 @@
 	<style>
 		body,html {
 			background-image: url("background.gif");
-			background-color: #cccccc;
+			background-color:rgb(47, 143, 157);
 			height: 100%;
 		}
+
+        a{
+            margin: 0 2px 0 2px;
+            color: black;
+            font-size: small;
+        }
+
+        .login-container{
+            padding: 20px 60px;
+            background-color: rgb(130, 219, 216);
+            border-radius: 50px;
+        }
+
+        .login-options-container{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            padding-right: 15px;
+        }
 	</style>
 
 	<div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
-        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <div class="col col-xl-3 login-container">
             {% if umessage %}
             <div class="alert alert-danger">
                 <center>{{umessage}}</center>
             </div>
             {% endif  %}
             <form action="/index" method="post">
-                <h2 class="text-center"> Sign In </h2>
+                <h2 class="text-center mb-4 mt-2">SIGN IN</h2>
                 <div class="form-group">
-                    <input _ngcontent-c0="" class="form-control form-control-lg" name="user_email" placeholder="User email" type="text">
+                    <input _ngcontent-c0="" class="form-control form-control-sm" name="user_email" placeholder="email" type="text">
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" name="user_pwd" placeholder="Password" type="password">
+                    <input class="form-control form-control-sm" name="user_pwd" placeholder="password" type="password">
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-info btn-lg btn-block">Sign In</button>
+                <div class="form-group mt-4">
+                    <button class="btn btn-info btn-sm btn-block">Sign In</button>
                 </div>
-				<div class="form-group">
-					<a class="btn btn-primary btn-sm" href="/reset_password">Forgot password</button>
-					<a class="btn btn-secondary btn-sm" href="/create_account">Signup</button>
+				<div class="login-options-container">
+					<a  href="/reset_password">Forgot Password</button> |<a  href="/create_account">Sign Up</button>
 				</div>
             </form>
         </div>
