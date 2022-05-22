@@ -59,6 +59,10 @@ def hello():
             return render_template('index.html', umessage= unsuccessful)
     return render_template("index.html")
 
+@app.route("/home")
+def home():
+    return render_template('home.html')
+
 @app.route("/create_account", methods =['GET','POST'])
 def create_account():
     if request.method == 'POST':
@@ -72,7 +76,7 @@ def create_account():
                 auth.send_email_verification(new_user['idToken'])
                 return render_template("verify_email.html")
             except:
-                existing_account = 'Passwords you entered are not matched'
+                existing_account = 'You have existing account under this email '
                 return render_template("create_account.html", exist_message = existing_account)
 
     return render_template("create_account.html")

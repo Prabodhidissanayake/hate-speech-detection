@@ -75,7 +75,7 @@ print("Accuracy score for SVC is: ", accuracy_score(y_test, y_pred_svm) * 100, '
 
 
 
-#Updated Code Here
+
 #Saving SVM model 
 filename = 'final_predict_model.sav'
 print("Saving Modelss....")
