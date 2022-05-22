@@ -28,6 +28,10 @@
             margin-top: 10px;
             font-weight: bold;
         }
+
+        h2{
+            margin-bottom: 20px;
+        }
         
         .register-container{
             padding: 20px 60px;
@@ -35,7 +39,6 @@
             border-radius: 50px;
         }
 	</style>
-
         <div class="container-fluid h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-xl-3 register-container">
@@ -45,8 +48,7 @@
                     </div>
                     {% endif %}
                     <form action="/create_account" method="post">
-                        <h2 class="text-center"> Sign Up </h2>
-
+                        <h2 class="text-center">Sign Up</h2>
                         <div class="form-group">
                             <input _ngcontent-c0="" class="form-control
                                 form-control-sm" name="user_email"
