@@ -38,9 +38,18 @@
             background-color: rgb(130, 219, 216);
             border-radius: 50px;
         }
+
+        .center-position{            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 99vw!important;
+            height: 100vh!important;
+            flex-direction: column;
+        }
 	</style>
         <div class="container-fluid h-100">
-            <div class="row justify-content-center align-items-center h-100">
+            <div class="center-position">
                 <div class="col-xl-3 register-container">
                     {% if exist_message %}
                     <div class="alert alert-danger">
