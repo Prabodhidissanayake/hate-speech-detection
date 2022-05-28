@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <title>Hate Speech Detection</title>
+      <base href="/" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" type="image/x-icon" href="favicon.ico" />
+      <link rel="stylesheet"
+         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+         crossorigin="anonymous">
+   </head>
+   <style>
+      .body {
+      padding: 20px;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(1,59,86,255)
+      }
+      .content-container {
+      margin: 0 300px 150px 0;
+      height: 60vh;
+      width: 55vw;
+      /* background-color: red; */
+      font-size: 1.05rem;
+      display: flex;
+      }
+      .img-container{
+      width: 50%;
+      }
+      .text-container {
+      width: 50%;
+      }
+      .heading,
+      .description {
+      padding: 10px;
+      word-wrap: break-word;      
+      color: rgb(138, 148, 167);
+      }
+      .heading{  
+      color: white!important;
+      }
+      .button {
+      border: 1px solid;
+      text-transform: uppercase;
+      font-size: 1rem;
+      font-weight: bold!important;
+      font-weight: 100;
+      display: block;
+      width: 140px;
+      height: 39px;
+      /* background: #4E9CAF; */
+      padding: 4px;
+      text-align: center;
+      /* border-radius: 5px; */
+      color: white;
+      margin-top: 10px;
+      line-height: 25px;
+      }
+      a:hover {
+      cursor: pointer;
+      }
+   </style>
+   <body class="body">
+      <div class="content-container">
+      <div class="text-container">
+         <div class="heading">
+            <h2>Welcome to Hate Speech Detection System</h2>
+         </div>
+         <div class="description">
+            <div>
+               <span style="font-weight: bold;">Ever wondered if your tweets contain Hate Speech? </span>               
+               <br>
+               <br><span style="font-weight: bold;">Curious if someones tweets contain Hate Speech?</span> 
+               <br>
+               <br>You can just register and start using our latest Hate Speech detection tools that will analyze tweets for Hate Speech!
+            </div>
+            <div>
+               <br>
+               We offer two options:
+               <br>
+               <div style="display: flex;">
+                  <div style="margin-right: 10px;"><span class="badge badge-primary">Option 1</span></div>
+                  <div>You can enter your tweets before tweeting and let us analyze the tweet. </div>
+               </div>
+               <div style="display: flex;">
+                  <div style="margin-right: 10px;"><span class="badge badge-primary">Option 2</span></div>
+                  <div>You can enter a twitter handle and get a report of previous tweets</div>
+               </div>
+               <br>      
+               <div><a href="/index" class="button">Get Started</a></div>
+            </div>
+         </div>
+      </div>
+      <div class="img-container">
+         <img src="../static/stopingHate.jpg" alt="test">
+      </div>
+   </body>
+</html>

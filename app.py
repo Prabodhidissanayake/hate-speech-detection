@@ -41,6 +41,14 @@ access_token_secret = "iILNydxaee0hl8WI8ZpOHL5MUqIWg3Or53nZnyZEMfGE2"
 
 
 @app.route("/")
+@app.route("/landingpg")
+def landing():
+    return render_template('landinpg.html')
+
+# app = Flask(static_folder='C:\\FYP\\Hate-Speech-Detection\\assets')
+
+
+
 @app.route("/index", methods= ["GET","POST"])
 def hello():
     if request.method == 'POST':
