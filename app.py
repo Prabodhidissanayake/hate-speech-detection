@@ -39,7 +39,7 @@ access_token_secret = "iILNydxaee0hl8WI8ZpOHL5MUqIWg3Or53nZnyZEMfGE2"
 
 
 
-
+#landing page
 @app.route("/")
 @app.route("/landingpg")
 def landing():
@@ -48,7 +48,7 @@ def landing():
 # app = Flask(static_folder='C:\\FYP\\Hate-Speech-Detection\\assets')
 
 
-
+#index page
 @app.route("/index", methods= ["GET","POST"])
 def hello():
     if request.method == 'POST':
@@ -67,10 +67,11 @@ def hello():
             return render_template('index.html', umessage= unsuccessful)
     return render_template("index.html")
 
+#home page
 @app.route("/home")
 def home():
     return render_template('home.html')
-
+#new user account create
 @app.route("/create_account", methods =['GET','POST'])
 def create_account():
     if request.method == 'POST':
@@ -89,6 +90,7 @@ def create_account():
 
     return render_template("create_account.html")
 
+#reset password
 @app.route("/reset_password", methods =['GET','POST'])
 def forget_password():
     if request.method == 'POST':
@@ -97,6 +99,7 @@ def forget_password():
         return render_template('index.html')
     return render_template('reset_password.html')
 
+#submit to analyse
 @app.route("/submit", methods =['POST'])
 def submit():
     filename_model = 'final_predict_model.sav'
@@ -154,7 +157,7 @@ def submit():
     
         return render_template("submit.html", resultList = Resultlist,result=result,inputtext=inputtext)
 
-
+#function to clean raw input text
 def CleanText(rawtext):
     REPLACE_NO_SPACE = re.compile("(\.)|(\;)|(\:)|(\!)|(\')|(\?)|(\,)|(\")|(\|)|(\()|(\))|(\[)|(\])|(\%)|(\$)|(\>)|(\<)|(\{)|(\})")
     REPLACE_WITH_SPACE = re.compile("(<br\s/><br\s/?)|(-)|(/)|(:).")

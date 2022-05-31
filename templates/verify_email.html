@@ -17,14 +17,20 @@
       background: rgb(34,193,195);
       background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(68,95,103,0.981127485173757) 50%, rgba(45,154,253,1) 100%);
 		}
+
+    .flex-position{
+      display:flex;
+      flex-direction: column;
+    }
 	</style>
 
 	<div class="container-fluid h-100">
-    <div class="row justify-content-center align-items-center h-100">
+    <div class="row justify-content-center align-items-center h-100 flex-position">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-				<h2 class="text-center"> We sent you a mail </h2>
-				<h2 class="text-center text-muted" > Please verify your email to continue </h2>
+				  <h2 class="text-center"> We sent you an email </h2>
+				  <h2 class="text-center text-muted" > Please verify your email to continue </h2>
         </div>
+        <a class="btn btn-primary" href="/index">Continue</a>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

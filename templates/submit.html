@@ -18,11 +18,19 @@
         .result-container{
           background-color: rgb(130, 219, 216) !important;     
           border-radius: 10px;
+          width: 60%;
+        }
+        .body-position{
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
         </style>
   </head>
+  {%if resultList %}
   <body>
-    {%if resultList %}
     <div class="container mt-5 bg-white p-3 result-container">
       <table class="table">
         <thead>
@@ -48,6 +56,7 @@
 
     </div>
     {%else%}
+    <body class="body-position">
     <div class="container mt-5 bg-white p-3">
       <center>
         <p style="font-weight: bolder;">Text : <span style="font-weight:
